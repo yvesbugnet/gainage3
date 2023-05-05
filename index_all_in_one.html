@@ -1,0 +1,379 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gainage avancé</title>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32" type="image/png">
+<style>
+    
+body {
+	font-family: 'Oswald', 'Helvetica Neue', arial;
+	font-weight: 100;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+	margin: 0;
+	color: rgba(0,0,0,.7);
+	background: cyan;
+}
+
+h2 {
+	letter-spacing: 2px;
+	padding: 5px;
+	color: rgba(255,255,255,.9);
+	font-size: 3em;
+	margin: 0;
+	font-weight: 100;
+	text-transform: uppercase;
+}
+
+p.controls {
+	background: rgba(0,0,0,.1);
+	padding: 10px;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+p.controls button {
+	padding: 7px;
+}
+
+input {
+	background: none;
+	border: 1px solid rgba(255,255,255,.8);
+	padding: 7px;
+	width: 50px;
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+div#app {
+	background: rgba(0,0,0,.1);
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+	box-shadow: 10px 10px rgba(0,0,0,.3);
+}
+
+h1 {
+	font-family: 'Oswald', 'Helvetica Neue', arial;
+	font-weight: 100;
+	font-size: 3em;
+	letter-spacing: 3px;
+	color: rgba(255,255,255,.8);
+	margin: 5px 0 -px 0;
+}
+
+p.large {
+	font-size: 5em;
+	font-family: 'Oswald', 'Helvetica Neue', arial;
+	color: rgba(0,0,0,.5);
+	margin: 5px;
+}
+p.medium {
+	font-size: 4em;
+	font-family: 'Oswald', 'Helvetica Neue', arial;
+	color: rgba(0,0,0,.5);
+	margin: 5px;
+}
+
+button, input {
+	color: rgba(255,255,255,.9);
+	font-size: 1em;
+	border-radius: 10px;
+}
+
+button {
+	padding: 10px 20px;
+	border: none;
+	background: rgba(0,0,0,.3);
+	letter-spacing: 1px;
+	font-family: 'Oswald', 'Helvetica Neue', arial;
+	text-transform: uppercase;
+}
+
+button:hover {
+	cursor: pointer;
+	background: rgba(0,0,0,.15);
+}
+
+@media (max-width: 767px) {
+
+	div#app {
+		width: 90%;
+	}
+
+	p#title {
+		float: none;
+		text-align: center;
+		border-bottom: 1px solid rgba(255,255,255,.9);
+		margin-bottom: 10px;
+	}
+
+	p#time {
+		float: none;
+		text-align: center;
+	}
+
+	p#time input {
+		padding: 5px 5px;
+		font-size: .8em;
+	}
+
+	p#time button {
+		padding: 2px 20px;
+	}
+
+	h1, p.large {
+		margin: 0;
+	}
+
+	p.large {
+		font-size: 3em;
+	}
+}
+
+    
+</style>
+</head>
+<body>
+
+  <div id="app">
+
+    <h2>Gainage 2</h2>
+
+   <div id="running mode">
+    <div id="status">Repos</div>
+
+    <p class="large"><span id="sec">20</span></p>
+    <p class="medium"><span id="exercice">0
+<div  class="exercices medium">
+<div  class="medium" style="display:none" id="exo1">Superman G : Gainage planche sur les mains on monte bras gauche et jambe droite a l'horiontal <br/>
+  <img src="images/gainage/superman.png" alt="superman"/></div>
+<div   style="display:none" id="exo2">Gainage main inversé, ventre tourné vers le ciel  <br/>
+  <img src="images/gainage/planche_inversee_sur_les_mains.png" alt="gainage plage"/></div>
+<div   style="display:none" id="exo3">Superman D : Gainage planche sur les mains on monte bras droit jambe gauche a l'horizontal <br/>
+  <img src="images/gainage/superman.png" alt="superman droit" style="transform: scaleX(-1);"/></div>
+<div   style="display:none" id="exo4">Rameur, position cuillere, dynamique, on rame</div>
+<div    style="display:none" id="exo5">Mountain climber : sur les mains, on monte alternativement les genoux vers les coudes (cardios) <br/>
+  <img src="images/gainage/mountain_climber_droit.png" alt="mountain climber"/></div>
+<div    style="display:none" id="exo6">Gainage coude, planche classique <br/>
+  <img src="images/gainage/planche_sur_les_coudes.png" alt="planche"/></div>
+<div    style="display:none" id="exo7">Mountain climber côté exterieur: sur les mains, on monte alternativement les genoux vers les coudes par les côtés (cardios)<br/>
+  <img src="images/gainage/mountain_climber_interieur.png" alt="mountain climber interieur"/></div>
+<div    style="display:none" id="exo8">Gainage coude droit : de profil en montant la jambe gauche a l'horiontal, et le bras droit a la vertical <br/>
+  <img src="images/gainage/planche_coude_lateral_bras_au_ciel.png" alt="planche"/></div>
+<div    style="display:none" id="exo9">Mountain climber côté interieur: sur les mains, on monte alternativement les genoux vers les coudes par les côtés (cardios) <br/>
+  <img src="images/gainage/mountain_climber_interieur.png" alt="mountain climber interieur" style="transform: scaleX(-1);"/></div>
+<div   style="display:none" id="exo10">Gainage coude gauche : de profil en montant la jambe droite a l'horiontal, et le bras gauche a la vertical <br/>
+  <img src="images/gainage/planche_coude_lateral_bras_au_ciel.png" alt="planche" style="transform: scaleX(-1);"/></div>
+<div   style="display:none" id="exo11">Araignée, on écarte le plus possible pieds et mains en statique</div>
+<div    style="display:none" id="exo12">Rameur statique, position cuillere</div>
+<div    style="display:none" id="exo13">Touché de cheville : jambe replié, sur le dos, buste relevé, on vient alternativement toucher chaque cheville</div>
+<div    style="display:none" id="exo14">Pausé de coude : sur les mains, on vient poser alternativement le coude droit, puis gauche a terre <br/>
+  <img src="images/gainage/planche_sur_les_mains_on_leve_un_bras_pour_toucher_l_epaule.png" alt="gainage"/></div>
+<div   style="display:none" id="exo15">Sur une main un pied de profil droit, on vient avec la main opposée toucher le sol, puis le ciel <br/>
+  <img src="images/gainage/planche_main_laterale_autre_bras_et_pied_au_ciel.png" alt="gainage"/></div>
+<div   style="display:none" id="exo16">Sur une main un pied de profil gauche, on vient avec la main opposée toucher le sol, puis le ciel  <br/>
+  <img src="images/gainage/planche_main_laterale_autre_bras_et_pied_au_ciel.png" alt="gainage" style="transform: scaleX(-1);"/></div>
+<div   style="display:none" id="exo17">Gainage coude inversé, ventre tourné vers le ciel <br/>
+  <img src="images/gainage/planche_inversee_sur_les_coudes.png" alt="gainage plage"/></div>
+</div>
+</span></p>
+
+    <p>
+      <button id="start">Start</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button id="pause">Pause</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+      <button id="reset">Reset</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+     <button id="show_settings">show</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+     <button id="fullscreenButton" onclick="document.documentElement.requestFullscreen()">fullscreen</button>
+
+    </p>
+
+   </div><!-- id="running mode"> -->
+
+ <div class="controls" id="controls">
+      <input type="text" id="intervalTime" value="20" />Temps de travail(s)
+     <input type="text" id="breakTime" value="10" /> Repos(s)
+        <input type="text" id="nbExercices" value="17" />nb exercices
+    <input type="text" id="nbSet" value="1"/>nb set
+     <button id="settings">Update</button>
+ <button id="hide_settings">hide</button>
+
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="script.js">
+  </script>
+  <script Type="Text/Javascript">
+window.onload = function() {
+
+  var seconds = 20;
+  var rest = true;
+  var interval;
+  var nbExercice=0;
+
+  var intervalTime = 20;
+  var breakTime = 10;
+  var nbExercices = 17;
+  var nbSet = 1;
+var controlsHidden=false;
+  var settingsButton = document.getElementById("settings");
+  var hideSettingsButton = document.getElementById("hide_settings");
+var showSettingsButton = document.getElementById("show_settings");
+  var intervalInput = document.getElementById("intervalTime");
+  var breakInput = document.getElementById("breakTime");
+  var nbExercicesInput = document.getElementById("nbExercices");
+  var nbSetInput = document.getElementById("nbSet");
+
+  var startButton = document.getElementById("start");
+  var pauseButton = document.getElementById("pause");
+  var resetButton = document.getElementById("reset");
+
+  var statusHeader = document.getElementById("status");
+  var secondsSpan = document.getElementById("sec");
+  var exerciceSpan = document.getElementById("exercice");
+
+$('show_settings').hide();
+$('hide_settings').show();
+
+  settingsButton.onclick = function() {
+    intervalTime = Math.floor(intervalInput.value * 1);
+    breakTime = Math.floor(breakInput.value * 1);
+    nbExercices = Math.floor(nbExercicesInput.value * 1);
+    nbSet = Math.floor(nbSetInput.value * 1);
+    reset();
+  }
+
+  startButton.onclick = function() {
+    rest = false;
+    changeToGo();
+    interval = setInterval(countdownSeconds, 1000);
+  }
+
+  resetButton.onclick = function() {
+    reset();
+  }
+  
+hideSettingsButton.onclick = function() {
+    changeViewSettingsButton()
+
+}
+showSettingsButton.onclick = function() {
+
+    changeViewSettingsButton();
+}
+
+changeViewSettingsButton = function (){
+    if (controlsHidden){
+$('#controls').show();
+controlsHidden=false;
+$('hide_settings').show();
+$('show_settings').textContent = "Hide";
+$('show_settings').innerHTML = "Hide";
+    } else{
+ $('#controls').hide();
+controlsHidden=true;
+$('show_settings').hide();
+$('show_settings').textContent = "Show";
+$('show_settings').innerHTML = "Show";
+}
+ 
+  }
+  
+  
+  
+  function reset() {
+
+    clearInterval(interval);
+    seconds = intervalTime;
+    secondsSpan.innerText = seconds;
+    rest = true;
+   nbExercice=0;
+
+    exerciceSpan.innerText = nbExercice +"/"+nbExercices;
+    changeToRest();
+  }
+
+  pauseButton.onclick = function() {
+    clearInterval(interval);
+  }
+
+  function countdownSeconds() {
+    seconds -= 1;
+    secondsSpan.innerText = seconds;
+    checkForStateChange();
+  }
+
+  function checkForStateChange() {
+    if (nbExercice == nbExercices ) {
+        changeToFinished();
+    }
+    if (seconds == 0 && rest == false) {
+      seconds = breakTime + 1;
+      rest = true;
+
+      nbExercice += 1;
+      changeToRest();
+    } else if (seconds == 0 && rest == true) {
+      seconds = intervalTime + 1;
+      rest = false;
+      changeToGo();
+    }
+  }
+
+  function changeToRest() {
+    $("body").css("background", "cyan");
+    statusHeader.innerText = "Repos";
+    exerciceSpan.innerText = (nbExercice+1) +"/"+nbExercices;
+    changeSpan();//
+    }
+    
+function changeSpan() {
+var exo= "#exo"+(nbExercice+1)
+//console.log($(exo));
+    $(exo).css('display', 'block');
+    $(exo).show();
+    if (nbExercice>0)        {
+        exo= "#exo"+(nbExercice)
+        //console.log($(exo));
+        $(exo).css('display', 'none');
+        $(exo).hide();
+        
+    }
+  }
+
+  function changeToGo() {
+    exerciceSpan.innerText = (nbExercice+1) +"/"+nbExercices;
+    $("body").css("background", "pink");
+    statusHeader.innerText = "Gaine!";
+//console.log($('ul.exercices'));
+//console.log($('ul.exercices li'));
+    //$('ul.exercices').get(nbExercice).css('display', 'block');
+    changeSpan();
+
+  }
+ function changeToFinished() {
+    reset();
+    $("body").css("background", "green");
+    statusHeader.innerText = "Finished !";
+  }
+}
+
+  </script>
+</body>
+</html>
