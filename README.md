@@ -1,8 +1,8 @@
 # HIIT Timer
 
-A timer for high-intensity interval training built with JavaScript and HTML/CSS.
+A timer for high-intensity interval training abs built with JavaScript and HTML/CSS.
 
-<img src="http://www.kellylougheed.com/images/projects/hiit.gif" alt="JavaScript HIIT timer">
+
 
 ## Features
 
@@ -11,9 +11,12 @@ A timer for high-intensity interval training built with JavaScript and HTML/CSS.
 * You can pause and reset the timer.
 
 * The background changes to cyan during rest and pink during the active interval.
+* list of abs
+* random list
+* fullscreen mods
+* 
 
 ## How to use
 
-* Use online at http://www.kellylougheed.com/hiit
 
 * Clone this repo to your machine and open index.html in any web browser.
