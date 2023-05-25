@@ -148,12 +148,16 @@ button:hover {
 
   <div id="app">
 
-    <h2>Gainage 2</h2>
+    <h2>Gainage 3</h2>
 
    <div id="running mode">
     <div id="status">Repos</div>
 
-    <p class="large"><span id="sec">20</span></p>
+    <p class="large"><span id="sec">23</span></p>
+<!--
+ La listes des exercices, identifiée par exo(id) : exo1, exo2, qui sont des <div> visible (diplay:block) ou invisible par default (display:none), on en active un seul a la fois
+ une autre liste javascript existe, qui contient par default l'index des exo (eg 1...23), et cette liste (tableau), peut être randomisé
+-->
     <p class="medium"><span id="exercice">0
 <div  class="exercices medium">
 <div  class="medium" style="display:none" id="exo1">Superman G : Gainage planche sur les mains on monte bras gauche et jambe droite a l'horiontal <br/>
@@ -186,6 +190,20 @@ button:hover {
   <img src="images/gainage/planche_main_laterale_autre_bras_et_pied_au_ciel.png" alt="gainage" style="transform: scaleX(-1);"/></div>
 <div   style="display:none" id="exo17">Gainage coude inversé, ventre tourné vers le ciel <br/>
   <img src="images/gainage/planche_inversee_sur_les_coudes.png" alt="gainage plage"/></div>
+<div   style="display:none" id="exo18">Gainage sprinter : position cuilliere, un jambe tendue, l'autre ramenée vers le bras opposé et on alterne<br/>
+  <img src="" alt="gainage plage"/></div>
+</div>
+<div   style="display:none" id="exo19">Gainage pont : allongé sur le dos, bras le long, on ramene les jambes et on decolle les fesses en poussant sur les pieds<br/>
+  <img src="" alt="gainage plage"/></div>
+<div   style="display:none" id="exo20">dead bug : allongez sur le dos bras et jambes en l’air, les genoux fléchis à un angle de. On baisse en même temps jambe gauche et bras droit<br/>
+  <img src="" alt="gainage plage"/></div>
+<div   style="display:none" id="exo21">Superman allongé statique : on decolle bras et jambe tendue<br/>
+  <img src="" alt="gainage plage"/></div>
+</div>
+<div   style="display:none" id="exo22">Roulette<br/>
+  <img src="" alt="gainage plage"/></div>
+<div   style="display:none" id="exo23">Planche sur ballon<br/>
+  <img src="" alt="gainage plage"/></div>
 </div>
 </span></p>
 
@@ -196,21 +214,23 @@ button:hover {
     &nbsp;&nbsp;&nbsp;&nbsp;
       <button id="reset">Reset</button>
     &nbsp;&nbsp;&nbsp;&nbsp;
-     <button id="show_settings">show</button>
+     <button id="show_settings">show/hide</button>
     &nbsp;&nbsp;&nbsp;&nbsp;
      <button id="fullscreenButton" onclick="document.documentElement.requestFullscreen()">fullscreen</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+     <button id="randomButton" >random</button>
 
     </p>
 
    </div><!-- id="running mode"> -->
 
  <div class="controls" id="controls">
-      <input type="text" id="intervalTime" value="20" />Temps de travail(s)
-     <input type="text" id="breakTime" value="10" /> Repos(s)
-        <input type="text" id="nbExercices" value="17" />nb exercices
-    <input type="text" id="nbSet" value="1"/>nb set
+     Temps de travail(s) <input type="text" id="intervalTime" value="20" />
+     Repos(s) <input type="text" id="breakTime" value="10" /> 
+     Nb exercices   <input type="text" id="nbExercices" value="17" />
+     Nb set <input type="text" id="nbSet" value="1"/>
      <button id="settings">Update</button>
- <button id="hide_settings">hide</button>
+  <button id="hide_settings" style="display:none" >hide</button> 
 
     </div>
 
@@ -226,15 +246,18 @@ window.onload = function() {
   var rest = true;
   var interval;
   var nbExercice=0;
+ var lastExercice=0;
+ var exerciceDone=0;
 
   var intervalTime = 20;
   var breakTime = 10;
-  var nbExercices = 17;
+  var nbExercices = 23;
   var nbSet = 1;
 var controlsHidden=false;
   var settingsButton = document.getElementById("settings");
   var hideSettingsButton = document.getElementById("hide_settings");
 var showSettingsButton = document.getElementById("show_settings");
+    var randomButton = document.getElementById("randomButton");
   var intervalInput = document.getElementById("intervalTime");
   var breakInput = document.getElementById("breakTime");
   var nbExercicesInput = document.getElementById("nbExercices");
@@ -247,10 +270,70 @@ var showSettingsButton = document.getElementById("show_settings");
   var statusHeader = document.getElementById("status");
   var secondsSpan = document.getElementById("sec");
   var exerciceSpan = document.getElementById("exercice");
+  var randomExo = false;
+
+// on declare une liste d'exo a faire qu'on pourra eventuellement trier
+var listExo = [];
+//listExo.append 
+
+// ON LISTE LES EXO DANS L'ORDRE
+function initListExo(elements) {
+    elements = [];    
+    for (var i = 0; i < nbExercices; i++) {
+                elements.push(i);
+    }
+    return elements;
+}
+
+listExo = initListExo(listExo);
+
+/**
+fonction de melange de la liste d'exo
+**/
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
 
 $('show_settings').hide();
 $('hide_settings').show();
 
+/**
+a l'appelle de cette fonction, on passe en mode random :
+    la liste listExo est "melangee"
+    noRandom la liste est reinitialisee
+    l'index est exerciceDone
+**/
+randomButton.onclick = function() {
+    // todo change button text
+    if (randomExo) {
+        randomExo = false;
+        randomButton.innerText = "NoRandom";
+        initListExo(listExo);
+    //        noRand;
+    } else {
+        randomExo = true;
+        randomButton.innerText = "Random";
+        shuffle(listExo);
+    }
+}
+
+/**
+ appui sur le bouton seetings, on prend en compte toutes les valeures rentrées
+**/
   settingsButton.onclick = function() {
     intervalTime = Math.floor(intervalInput.value * 1);
     breakTime = Math.floor(breakInput.value * 1);
@@ -259,8 +342,16 @@ $('hide_settings').show();
     reset();
   }
 
+
+/**
+appui sur le bouton start
+ on calcul le prochain exercice dans la liste
+ on passe en mode chrono
+ 
+**/
   startButton.onclick = function() {
     rest = false;
+      computeNextExercice();
     changeToGo();
     interval = setInterval(countdownSeconds, 1000);
   }
@@ -304,13 +395,15 @@ $('show_settings').innerHTML = "Show";
     secondsSpan.innerText = seconds;
     rest = true;
    nbExercice=0;
-
+lastExercice=0;
     exerciceSpan.innerText = nbExercice +"/"+nbExercices;
     changeToRest();
+    initListExo(listExo);
   }
 
   pauseButton.onclick = function() {
     clearInterval(interval);
+
   }
 
   function countdownSeconds() {
@@ -319,15 +412,19 @@ $('show_settings').innerHTML = "Show";
     checkForStateChange();
   }
 
+
+/**
+ selon le temps ecoulé, et le nb d'exo fait, on termine, on continue le chrono ou on bascule en mode repos
+**/
   function checkForStateChange() {
-    if (nbExercice == nbExercices ) {
+    if (exerciceDone == nbExercices ) {
         changeToFinished();
     }
     if (seconds == 0 && rest == false) {
       seconds = breakTime + 1;
       rest = true;
-
-      nbExercice += 1;
+        exerciceDone+=1;
+      computeNextExercice();
       changeToRest();
     } else if (seconds == 0 && rest == true) {
       seconds = intervalTime + 1;
@@ -336,20 +433,43 @@ $('show_settings').innerHTML = "Show";
     }
   }
 
+/**
+on calcul l'exo suivant
+si c'est noRandom on prend le suivant
+en fait on prend juste l'exo dans la liste exo qui est soit dans l'ordre, soit trié
+**/
+function computeNextExercice() {
+    lastExercice=nbExercice;
+    if (randomExo) {
+        // nbExercice= Math.floor((Math.random()*nbExercices));//la maniere de prendre un exo au hasard
+//console.write("exo "+(nbExercice));
+    }else{
+        //        nbExercice=(nbExercice+1); incrementer l'exo
+    }
+    nbExercice = listExo[exerciceDone+1];
+}
+
+
   function changeToRest() {
     $("body").css("background", "cyan");
     statusHeader.innerText = "Repos";
-    exerciceSpan.innerText = (nbExercice+1) +"/"+nbExercices;
+
+    exerciceSpan.innerText = "Exo n "+(nbExercice)+ " ,  "+ (exerciceDone+1) +"/"+nbExercices;
     changeSpan();//
     }
     
+
+/**
+ Mise a jour des infos chrono
+**/
 function changeSpan() {
-var exo= "#exo"+(nbExercice+1)
+    var exo= "#exo"+(nbExercice);
+    
 //console.log($(exo));
     $(exo).css('display', 'block');
     $(exo).show();
     if (nbExercice>0)        {
-        exo= "#exo"+(nbExercice)
+        exo= "#exo"+(lastExercice)
         //console.log($(exo));
         $(exo).css('display', 'none');
         $(exo).hide();
@@ -357,8 +477,12 @@ var exo= "#exo"+(nbExercice+1)
     }
   }
 
+
+/**
+ passage en mode gainage et chrono
+**/
   function changeToGo() {
-    exerciceSpan.innerText = (nbExercice+1) +"/"+nbExercices;
+   // exerciceSpan.innerText = (nbExercice) +"/"+nbExercices;
     $("body").css("background", "pink");
     statusHeader.innerText = "Gaine!";
 //console.log($('ul.exercices'));
@@ -367,6 +491,11 @@ var exo= "#exo"+(nbExercice+1)
     changeSpan();
 
   }
+
+
+/**
+fin du gainage
+**/
  function changeToFinished() {
     reset();
     $("body").css("background", "green");
